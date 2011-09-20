@@ -1,0 +1,47 @@
+	<div class="webapp deals">
+		<div id="webapp_header">
+			<a href="/index_2" id="dp_back"><img src="/images/mobile/btn_changeSearch.gif" /></a>
+		</div>
+		<div id="webapp_content">
+			<div id="dp_subheader"><%= session[:category] %> for <%= session[:recipient][:value] %> in <%= session[:city][:value] %></div>
+    			<% deals.each do |k,v| %>			
+			<div class="deal_holder">
+				<div class="deal_holder_lhs">				
+					<a href="/detail_page/<%= k %>/deal" class="deals_thumb"><img src="<%= v[:data]['thumbnail_url'] %>" width="83" height="53" alt="Buy it!" /></a>
+					<% unless v[:data]['packages']['package'].to_a.assoc('gift_url').nil? %>
+					  <a href="<%= v[:data]['packages']['package']['gift_url'] %>" class="buyit_button" title="Buy it!"><img src="/images/mobile/btn_buyit.gif" alt="Buy it!"></a>
+					<% end %>
+					<span><%= BuyWithMe.time_difference(v[:data]['end_date']) %> remaining!</span>
+				</div>
+				<div class="deal_holder_rhs">
+					<a href="/detail_page/<%= k %>/deal"><h1><%= v[:name] %></h1></a>
+					<div class="price"><%= currencify(v[:price]) %>$</div>
+					<p><%= v[:the_deal] if v[:the_deal] != nil %></p>
+	                                <p>(<%= currencify(v[:price]) %> value)</p>
+					<a href="/detail_page/<%= k %>/deal" class="readMoreBtn">read more</a>
+				</div>
+			</div>
+			<%end%>
+			
+			<!-- Gift card placeholder -->
+			<div class="deal_holder">
+				<div class="deal_holder_lhs">
+					<a href="detail_page.html" class="deals_thumb"><img src="http://sandbox.buywithme.com/system/images/deals/1016/thumbnail_Gramercy_Pilates_Discount_Coupon.jpg?1279895367" width="83" height="53" alt="Deal Title" /></a>
+					<a href="https://www.buywithme.com/nyc/deals/1000/participations/new" class="buyit_button" title="Buy a Gift Card!"><img src="images/mobile/btn_buygiftcard.gif" alt="Buy a Gift Card!"></a>
+				</div>
+				<div class="deal_holder_rhs">
+					<a href="detail_page.html"><h1>A Buzzed-About Spot for Treatments & Skincare Products</h1></a>
+
+					<p>$98 g3ets you a 1-hour Swedish massage and 
+					a 30-minute, 5-point customized facial with 
+					homemade, all-natural products at SpaLab 
+					($240 value)</p>
+				</div>
+			</div>
+			
+			<a href="/index_2" id="changeDealBtn" title="Change Search"><img src="/images/mobile/btn_changeSearchDeal.gif" alt="Change Search"></a>
+			
+		 
+		
+		</div>
+		<div id="webapp_footer"></div>

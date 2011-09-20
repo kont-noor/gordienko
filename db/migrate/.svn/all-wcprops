@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/skornitsky/!svn/ver/91/gifts/db/migrate
+END
+003_create_deals.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/skornitsky/!svn/ver/41/gifts/db/migrate/003_create_deals.rb
+END
+004_update_deals.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/skornitsky/!svn/ver/62/gifts/db/migrate/004_update_deals.rb
+END
+001_create_markets.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/skornitsky/!svn/ver/41/gifts/db/migrate/001_create_markets.rb
+END
+002_create_categories.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/skornitsky/!svn/ver/91/gifts/db/migrate/002_create_categories.rb
+END

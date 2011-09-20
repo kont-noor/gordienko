@@ -1,0 +1,195 @@
+<% begin %>			
+	   <% location = deal['locations']['location']['location'] %>
+<% rescue %>
+	   <% location = nil %>
+<% end %>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="description" content="Match your friends and family to perfect gifts.  Discover great gift ideas for all occasions from Christmas & Valentine’s Day to birthdays & anniversaries." />
+	<meta name="keywords" content="gift ideas, holiday gift ideas, find great gifts, gift finder,Christmas gift ideas, New York gift ideas, Boston gift ideas, Philadelphia gift ideas, Washington DC gift ideas, Chicago gift ideas, Dallas gift ideas, Austin gift ideas, Houston gift ideas, Phoenix gift ideas, Los Angeles gift ideas, San Francisco gift ideas, mom gift ideas, girlfriend gift ideas, boyfriend gift ideas. 
+	Massage gift certificate, facial gift certificate, online gift certificate, last minute gift" />
+	<title>Find Great Gift Ideas For Any Occasion - Use Gift Finder By BuyWithMe</title>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=yes;" />
+	<script type="text/javascript">
+	  function page_Load() {
+	    setTimeout(function() { window.scrollTo(0, 1); }, 100);
+	  }
+	</script>
+	<script type='text/javascript' src='/js/mdetect.js'></script>
+	<script>
+		
+		var isSmartphone = DetectSmartphone();
+		//alert(isSmartphone);
+		if(isSmartphone == true)
+		{
+			document.write('<link media="screen" href="/css/mobile.css" type="text/css" rel="stylesheet" />');
+		}
+		else
+		{
+			document.write('<link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen" />');
+		}
+	</script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false">
+	</script>
+	<script type="text/javascript">
+	  var geocoder;
+	  var map;
+	  function initialize() {
+	    geocoder = new google.maps.Geocoder();
+	    var latlng = new google.maps.LatLng(40.756054, -73.986951);
+	    var myOptions = {
+	      zoom: 15,
+	      center: latlng,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP,
+		  streetViewControl: false,
+		  navigationControlOptions: {  
+		    style: google.maps.NavigationControlStyle.DEFAULT  
+		  }
+	    }
+	    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	  }
+
+	  function codeAddress() {
+	    <% unless location.nil? %> 
+	    var address = "<%= location %>";
+	    <% else %>
+	    var address = "";
+	    <% end %>
+	    geocoder.geocode( { 'address': address}, function(results, status) {
+	      if (status == google.maps.GeocoderStatus.OK) {
+	        map.setCenter(results[0].geometry.location);
+	        var marker = new google.maps.Marker({
+	            map: map,
+	 			icon: 'http://www.buywithme.com/images/maps/bwm_deal_marker.png',
+				title: '55 Broad Street New York NY',
+	            position: results[0].geometry.location
+	        });
+		
+			// var infowindow_0 = new google.maps.InfoWindow({
+			// 		 	   content: 'Info Box Content'});
+			// 		
+			// 		google.maps.event.addListener(marker, 'click', function() {
+			// 	    	infowindow_0.open(map,marker);
+			// 		});
+
+	      } else {
+	        alert("Geocode was not successful for the following reason: " + status);
+	      }
+	    });
+	  }
+		
+	function checkSelectedDeals()
+	{
+		var checkboxCount = 0;
+		var objCheckBoxes = document.forms["buyItForm"].elements["packages[]"];
+		for (var i=0; i < objCheckBoxes.length; i++)
+		{
+		   	if (objCheckBoxes[i].checked)
+			{
+		      checkboxCount++;
+		    }
+		}
+
+		if(checkboxCount == 0)
+		{
+			alert("Please select at least one option");
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	</script>
+	
+</head>
+
+<body  onload="initialize(); codeAddress();page_Load();">
+<div id="centerSite">
+	<div class="webapp deals">
+		<div id="webapp_header">
+			<a href="/index_2" id="dp_back"><img src="/images/mobile/btn_changeSearch.gif" /></a>
+		</div>
+		<div id="webapp_content">
+			
+			<form action="https://www.buywithme.com/nyc/deals/<%= deal['id'] %>/participations/new" id="deal" method="get" name="buyItForm">
+			<input name="authenticity_token" type="hidden" value="SDWAoCeBBRQwho1VK87TSSWZAzE5Om4swQd4JoDeDQE=" />
+			<div id="productName">
+				<h1><%= deal['merchant_name'] %></h1>
+				<h2><%= deal['title'] %></h2>
+			</div>
+			<div id="productImgHolder"><img src="<%= deal['medium_image_url'] %>"></div>
+				<div id="productSummary"><%= deal['caption'] unless deal['caption'].nil? %></div>			
+			<% for packet in deal['packages']['package'] %>
+			<% i= (!i) ? 0 : (i+1) %>
+			<% unless deal['packages']['package'][i].nil? %>
+			<div class="productContent package">
+				<label for="checkbox1">	
+					<p>
+						<span class="red"> Option <%= i+1 %>:</span><%= packet['title'] %><br>
+						<span class="green">Value <%= packet['price'] %>  Discount <%= packet['discount_percentage'] %>%  Savings <%= currencify(packet['discount_amount']) %></span>
+					</p>
+				</label>
+				<div class="checkbox_holder"><input id="checkbox<%= i %>" name="packages[]" type="checkbox" value="<% packet['id'] %>" /></div>
+				<div class="product_price"><%= packet['price'] %> <br><span>select</span></div>
+			</div>
+			<% end %>
+			<% end %>
+
+                        <% unless deal['description'].nil? %>
+			<div class="productContent">
+				<h5>The Deal</h5>
+				<p><% deal['description'] %>
+</p>
+				<input id="buy_it_one" class="btn_buyIt" name="buy_it" src="/images/mobile/btn_buyitBIG.gif" title="Buy It!" type="image" />
+				<span class="timeLeftHolder"><%= BuyWithMe.time_difference(deal['end_date']) %> remaining!</span>
+			</div>
+			<% end %>
+
+			<% unless deal['resrictions'].nil? %>
+			<div class="productContent">								
+				<h5>The Details</h5>
+				<ul>
+				<%= deal['resrictions'] %>
+				</ul>
+
+			</div>
+			<% end %>
+			
+			<% unless location.nil? %>
+			<div class="productContent">
+				<h5>The Place</h5>
+				<div id="map_canvas"></div>
+				<p><%= location %></p>
+			</div>
+			<% end %>			
+
+			<% unless deal['description'].nil? %>
+			<div class="productContent productReviews">
+				<h5>Reviews</h5>
+				<%= deal['description'] %>
+				<input id="buy_it_one" class="btn_buyIt" name="buy_it"  src="/images/mobile/btn_buyitBIG.gif" title="Buy It!" type="image" />
+				<span class="timeLeftHolder"><%= BuyWithMe.time_difference(deal['end_date']) %> remaining!</span>
+			</div>
+			<% end %>
+			
+			</form>
+		
+		</div>
+		<div id="webapp_footer">
+		<% unless session[:category].nil? || session[:recipient].nil? %>
+			<a href="/deals_page/<%= session[:city][:key]%>/<%= session[:recipient][:key]%>/<%= session[:category]%>" id="backToResultsFooterLink">Back to Results</a>
+		<% end %>
+		</div>
+		<div id="desktop_footer">
+			BuyWithMe &copy; 2010 | Go To <a href="http://www.buywithme.com">BuyWithMe.com</a> | <a href="http://www.buywithme.com/pages/privacy">Privacy Policy</a> | <a href="http://www.buywithme.com/pages/terms">Terms of Service</a>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

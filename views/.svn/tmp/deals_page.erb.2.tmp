@@ -1,0 +1,58 @@
+	<div class="webapp deals">
+		<div id="webapp_header">
+			<a href="/index_2" id="dp_back"><img src="/images/mobile/btn_changeSearch.gif" /></a>
+		</div>
+		<div id="webapp_content">
+			<div id="dp_subheader"><%= session[:category] %> Deals for <%= session[:recipient][:value] %> in <%= session[:city][:value] %></div>
+<<<<<<< .mine
+			<% unless deals.nil? %>
+
+=======
+    			<% if (deals != nil && deals.count >0)
+				deals.each do |k,v| %>
+			<div class="deal_holder">
+				<div class="deal_holder_lhs">				
+					<a href="/details/<%= session[:city][:key]%>/<%= session[:recipient][:key]%>/<%= url_encode(session[:category]) %>/<%= k %>" class="deals_thumb"><img src="<%= v[:data]['thumbnail_url'] %>" width="83" height="53" alt="Buy it!" /></a>
+					<% unless v[:data]['packages']['package'][0].nil? %>
+					<a href="<%= v[:buy_url] %>&packages[]=<%= v[:data]['packages']['package'][0]['id'] %>" class="buyit_button" title="Buy it!"><img src="/images/mobile/btn_buyit.gif" alt="Buy it!"></a>
+					<% else %>
+					<a href="<%= v[:buy_url] %>&packages[]=<%= v[:data]['packages']['package']['id'] %>" class="buyit_button" title="Buy it!"><img src="/images/mobile/btn_buyit.gif" alt="Buy it!"></a> 
+					<% end %>
+					<span><%= BuyWithMe.time_difference(v[:data]['end_date']) %> remaining!</span>
+				</div>
+				<div class="deal_holder_rhs">
+					<a href="/details/<%= session[:city][:key]%>/<%= session[:recipient][:key]%>/<%= url_encode(session[:category]) %>/<%= k %>"><h1><%= v[:name] %></h1></a>
+					<div class="price"><%= currencify(v[:price]) %></div>
+					<p><%= v[:headline] unless v[:headline].nil? %></p>
+					<p><%= v[:data]['caption'] unless v[:data]['caption'].nil? %></p>
+					<% unless v[:data]['packages']['package'][0].nil? %>
+	                                <p>(<%= currencify(v[:data]['packages']['package'][0]['initial_price']) %> value)</p>
+					<% else %>
+	                                <p>(<%= currencify(v[:data]['packages']['package']['initial_price']) %> value)</p>
+					<% end %>
+					<a href="/details/<%= session[:city][:key]%>/<%= session[:recipient][:key]%>/<%= url_encode(session[:category]) %>/<%= k %>" class="readMoreBtn">read more</a>
+				</div>
+			</div>
+>>>>>>> .r91
+			<%end
+			end%>
+			
+			<!-- Gift card placeholder -->
+			<div class="deal_holder">
+				<div class="deal_holder_lhs">
+					<a href="https://www.buywithme.com/gift_cards/new" class="deals_thumb"><img src="/images/mobile/giftCardThumb.png" width="83" height="53" alt="Deal Title" /></a>
+					<a href="https://www.buywithme.com/gift_cards/new" class="buyit_button" title="Buy a Gift Card!"><img src="/images/mobile/btn_buygiftcard.gif" alt="Buy a Gift Card!"></a>
+				</div>
+				<div class="deal_holder_rhs">
+					<a href="https://www.buywithme.com/gift_cards/new"><h1>BuyWithMe Gift Cards</h1></a>
+					<p>Let them choose their own deals! Available in $10, $25, $50 and $100 increments.</p>
+					<a href="https://www.buywithme.com/gift_cards/new" class="readMoreBtn">gift this</a>
+				</div>
+			</div>
+			
+			<a href="/index_2" id="changeDealBtn" title="Change Search"><img src="/images/mobile/btn_changeSearchDeal.gif" alt="Change Search"></a>
+			
+		 
+		
+		</div>
+		<div id="webapp_footer"></div>

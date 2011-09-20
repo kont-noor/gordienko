@@ -1,0 +1,29 @@
+<<<<<<< .mine
+	<div class="webapp homepage">
+		<div id="webapp_header"></div>
+		<div id="webapp_content">
+			<img src="/images/mobile/mobile_hp_logo.jpg" id="mobile_hp_sign" />
+			<div id="hp_instructions">Find a Gift <br><span>(Select Three)</span></div>
+			<a href="/choose_city/regular" class="btn_w_plus" title="In which city?">In which city?</a>
+			<a href="/choose_city/regular" class="btn gray_txt">Who are you shopping for?</a>
+			<a href="/choose_city/regular" class="btn gray_txt">What is he/she into?</a>
+			<div id="hp_instructions">OR<br>Commit a random act of giftiness</div>
+			<a href="/choose_city/rand" class="btn white_txt" title="Surprise Me">Surprise Me</a>
+		
+		</div>
+		<div id="webapp_footer"></div>
+=======
+	<div class="webapp homepage">
+		<div id="webapp_header"></div>
+		<div id="webapp_content">
+			<img src="/images/mobile/mobile_hp_logo.png" id="mobile_hp_sign" />
+			<div id="hp_instructions">Find a Gift <br><span>(Select Three)</span></div>
+			<a href="/choose_city" class="btn_w_plus" title="In which city?">In which city?</a>
+			<a href="/choose_city" class="btn gray_txt">Who are you shopping for?</a>
+			<a href="/choose_city" class="btn gray_txt">What is he/she into?</a>
+			<div id="hp_instructions">OR<br>Commit a random act of giftiness</div>
+			<a href="/detail_page/0" class="btn white_txt" title="Surprise Me">Surprise Me</a>
+		
+		</div>
+		<div id="webapp_footer"></div>
+>>>>>>> .r67

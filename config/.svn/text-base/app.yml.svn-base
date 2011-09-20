@@ -1,0 +1,14 @@
+development:
+  log: 0
+  logfile: applog.log
+  use_memcache: false
+
+test:
+  log: 0
+  logfile: /var/log/engineyard/apps/BWM/sqlfile.log
+  use_memcache: true
+
+production:
+  log: 5
+  logfile: /data/gift/shared/log/sqlfile.log
+  use_memcache: true

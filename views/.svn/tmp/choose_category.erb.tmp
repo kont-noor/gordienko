@@ -1,0 +1,42 @@
+<<<<<<< .mine
+	<div class="webapp">
+		<div id="webapp_header">
+			<a href="/choose_person/<%= session[:city][:key]%>/<%= session[:city][:value]%>" id="ccp_back"><img src="/images/mobile/btn_header_back.gif" /></a>
+		</div>
+		<div id="webapp_content">
+			<a href="/choose_city" id="selectedCityBtn"><%= session[:city][:value] %></a>
+			<a href="/choose_person/<%= session[:city][:key]%>/<%= session[:city][:value]%>" id="selectedPersonBtn"><%= session[:recipient][:value]%></a>
+						
+			<div id="ccp_instructions">and what would they fancy?</div>
+			<div class="selector_header"></div>
+			<div class="selector_content">
+			<% types.each do |k,v| %>
+			  <a href="/find_deals/<%= v %>"><%= v %></a>
+			  <br>
+			<% end %>
+			</div>
+			<div class="selector_footer"></div> 
+		
+		</div>
+		<div id="webapp_footer"></div>
+=======
+	<div class="webapp">
+		<div id="webapp_header">
+			<a href="/choose_person/<%= session[:city][:key]%>/<%= session[:city][:value]%>" id="ccp_back"><img src="/images/mobile/btn_header_back.gif" /></a>
+		</div>
+		<div id="webapp_content">
+			<a href="/choose_city" id="selectedCityBtn"><%= session[:city][:value] %></a>
+			<a href="/choose_person/<%= session[:city][:key]%>/<%= session[:city][:value]%>" id="selectedPersonBtn"><%= session[:recipient][:value]%></a>
+						
+			<div id="ccp_instructions">and what would they fancy?</div>
+			<div class="selector_header"></div>
+			<div class="selector_content">
+			<% types.each do |k,v| %>
+			  <a href="/find_deals/<%=k%>/<%=v%>"><%="#{v}"%></a>
+			<% end %>
+			</div>
+			<div class="selector_footer"></div> 
+		
+		</div>
+		<div id="webapp_footer"></div>
+>>>>>>> .r56

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" media="screen" href="../css/screen.css" />
+	<script type="text/javascript">
+	  function set_selected_item(){
+            switch (document.location.href) {
+	      case "http://127.0.0.1:4567/consultations":
+	        document.getElementById('consultations').setAttribute('class','selected_item');
+       	        break;
+       	      case "http://127.0.0.1:4567/news":
+	        document.getElementById('news').setAttribute('class','selected_item');
+       	        break;
+	      case "http://127.0.0.1:4567/guest":
+	        document.getElementById('guest').setAttribute('class','selected_item');
+       	        break;
+       	      case "http://127.0.0.1:4567/information":
+	        document.getElementById('information').setAttribute('class','selected_item');
+       	        break;
+	      case "http://127.0.0.1:4567/contacts":
+	        document.getElementById('contacts').setAttribute('class','selected_item');
+       	        break;
+  	      default:
+	        document.getElementById('home').setAttribute('class','selected_item');
+	        break;
+   	    }
+	  }
+	  function item_switching(selected){	  
+	    for (var i=1; i<=6; i++){
+	      var element = document.getElementById('item' + i);
+	      if (element.getAttribute('class') == 'selected_item') {
+	        element.setAttribute('class','left_menu_title');
+	      }
+	    }
+	    selected.setAttribute('class','selected_item');
+	  }
+	</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="description" content="Сайт психолога Гордиенко" />
+	<meta name="keywords" content="психология" />
+	<title>Сайт психолога Анны Гордиенко</title>
+</head>
+<body onload="set_selected_item();">
+<div class="head">
+
+<div class="head_contacts_text">
+  <div class="mail">
+    Email:
+  </div>
+  <div class="icq">
+    ICQ:
+  </div>
+  <div class="skype">
+    Skype:
+  </div>
+</div>
+
+<div class="left_menu">
+  <table>
+    <tr>
+      <td>
+	<a href="/">
+	  <div id="home" class="left_menu_title">Главная</div>
+	</a>
+     </td>
+    </tr>
+    <tr>   
+      <td>
+	<a href="/consultations">
+	  <div id="consultations" class="left_menu_title">Консультации</div>
+	</a>
+     </td>
+    </tr>
+    <tr>  
+      <td>
+	<a href="/news">
+	  <div id="news" class="left_menu_title">Новости</div>
+	</a>
+     </td>
+    </tr>
+    <tr>         
+      <td>
+	<a href="/guest">
+	  <div id="guest" class="left_menu_title">Гостевая</div>
+	</a>
+     </td>          
+    </tr>
+    <tr>  
+      <td>
+	<a href="/information">
+	  <div id="information" class="left_menu_title">Информационный</div>
+	</a>
+     </td>
+    </tr>
+    <tr>  
+      <td>
+	<a href="/contacts">
+	  <div id="contacts" class="left_menu_title">Связаться со мной</div>
+	</a>
+     </td>          
+    </tr>
+  </table>
+</div>
+
+<div class="content">
+  <table>
+    <tr><td class="title">
+      <% yield_content :title %>
+    </td></tr>
+    <tr><td class="content_line">      
+    </td></tr>
+    <tr><td>  
+      <%= yield %>
+    </td></tr>
+  </table>
+<div>
+
+<div class="bottom_line"></div>
+<div class="footer_text"><a href="/">Сайт психолога Анны Гордиенко</a></div>
+
+</div>
+</body>
+</html>
