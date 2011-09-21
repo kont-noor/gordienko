@@ -1,7 +1,7 @@
   require 'rubygems'
   require 'sinatra'
   require 'sinatra/content_for'
-  require 'erb'
+  require 'haml'
   require 'uri'
 
 #  enable :sessions
@@ -18,31 +18,32 @@ class Main < Sinatra::Base
   end
 
   def with_layout(template, options={}) 
-    erb(template, options.merge(:layout => :'/header'))
+    #erb(template, options.merge(:layout => :'/header'))
+    haml template
   end
 
   get '/' do
-    with_layout :'/index'
+    with_layout :index
   end
   
   get '/consultations' do
-    with_layout :'/consultations'
+    with_layout :consultations
   end
 
   get '/news' do
-    with_layout :'/news'
+    with_layout :news
   end
 
   get '/guest' do
-    with_layout :'/guest'
+    with_layout :guest
   end
 
   get '/information' do
-    with_layout :'/information'
+    with_layout :information
   end
 
   get '/contacts' do
-    with_layout :'/contacts'
+    with_layout :contacts
   end
 
   helpers Sinatra::ContentFor   

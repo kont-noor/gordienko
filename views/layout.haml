@@ -1,0 +1,64 @@
+!!!
+%html{:lang => 'en', :xmlns => 'http://www.w3.org/1999/xhtml', 'xml:lang' => 'en'}
+%head
+	%meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+	%meta{:content => "Сайт психолога Гордиенко", :name => "description"}
+	%meta{:content => "психология", :name => "keywords"}
+	%title Сайт психолога Анны Гордиенко
+	%link{:href => "../css/screen.css", :rel => "stylesheet", :type => "text/css", :media => "screen"}
+%body{:onload => "set_selected_item();"}
+.head
+	.head_contacts_text
+		.mail
+			Email:
+		.icq
+			ICQ:
+		.skype
+			Skype:
+
+	.left_menu
+		%table
+			%tr
+				%td
+					%a{:href => "/"}
+						#home.left_menu_title
+							Главная
+			%tr
+				%td
+					%a{:href => "/consultations"}
+						#consultations.left_menu_title
+							Консультации
+			%tr
+				%td
+					%a{:href => "/news"}
+						#news.left_menu_title
+							Новости
+			%tr
+				%td
+					%a{:href => "/guest"}
+						#guest.left_menu_title
+							Гостевая
+			%tr
+				%td
+					%a{:href => "/information"}
+						#information.left_menu_title
+							Информационный
+			%tr
+				%td
+					%a{:href => "/contacts"}
+						#contacts.left_menu_title
+							Связаться со мной
+	.content
+		%table
+			%tr
+				%td.title
+					=yield_content :title
+			%tr
+				%td.content_line
+			%tr
+				%td
+					=yield
+		%div
+			.bottom_line
+			.footer_text
+				%a{:href => "/"} Сайт психолога Анны Гордиенко

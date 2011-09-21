@@ -6,4 +6,4 @@ gem "httparty"
 gem "log4r", "~> 1.1.9"
 gem "mysql"
 gem "dalli"
-
+gem "haml"
