@@ -19,7 +19,7 @@ class Main < Sinatra::Base
 
   def with_layout(template, options={}) 
     #erb(template, options.merge(:layout => :'/header'))
-    haml template
+    haml template, :locals => {:active => template}
   end
 
   get '/' do

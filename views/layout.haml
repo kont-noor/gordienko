@@ -6,7 +6,7 @@
 	%meta{:content => "психология", :name => "keywords"}
 	%title Сайт психолога Анны Гордиенко
 	%link{:href => "../css/screen.css", :rel => "stylesheet", :type => "text/css", :media => "screen"}
-%body{:onload => "set_selected_item();"}
+%body
 .head
 	.head_contacts_text
 		.mail
@@ -21,32 +21,32 @@
 			%tr
 				%td
 					%a{:href => "/"}
-						#home.left_menu_title
+						#home.left_menu_title{:class => (active == :index)?"selected_item":""}
 							Главная
 			%tr
 				%td
 					%a{:href => "/consultations"}
-						#consultations.left_menu_title
+						#consultations.left_menu_title{:class => (active == :consultations)?"selected_item":""}
 							Консультации
 			%tr
 				%td
 					%a{:href => "/news"}
-						#news.left_menu_title
+						#news.left_menu_title{:class => (active == :news)?"selected_item":""}
 							Новости
 			%tr
 				%td
 					%a{:href => "/guest"}
-						#guest.left_menu_title
+						#guest.left_menu_title{:class => (active == :guest)?"selected_item":""}
 							Гостевая
 			%tr
 				%td
 					%a{:href => "/information"}
-						#information.left_menu_title
+						#information.left_menu_title{:class => (active == :information)?"selected_item":""}
 							Информационный
 			%tr
 				%td
 					%a{:href => "/contacts"}
-						#contacts.left_menu_title
+						#contacts.left_menu_title{:class => (active == :contacts)?"selected_item":""}
 							Связаться со мной
 	.content
 		%table
