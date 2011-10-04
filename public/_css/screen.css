@@ -1,0 +1,116 @@
+body{
+	width: 950px;
+	margin: 0 auto;
+}
+
+p
+{
+	text-align: justify;
+	color: #525252;
+	font-size: 14px;
+	font-family: arial, sans, serif;
+}
+
+.head
+{
+	height: 250px;
+	background-image: url(../images/head.png);
+	background-repeat: repeat-x;
+	background-position: center top;
+	background-color: white;	
+}
+
+.head_contacts_text
+{
+	font-size: 12px;
+	color: #e2d1f1;
+	font-family: arial, sans, serif;
+	padding-left: 772px;
+	padding-top: 49px;
+}
+
+.mail
+{
+
+}
+
+.icq
+{
+	padding-top: 29px;
+}
+
+.skype
+{
+	padding-top: 26px;
+}
+
+.left_menu, .content
+{
+	padding-top: 102px;
+}
+
+.left_menu
+{
+	width: 211px;
+	float: left;
+}
+
+.left_menu a
+{
+	text-decoration: none;
+}
+
+.left_menu_title, .selected_item
+{
+	width: 142px;
+	line-height: 27px;
+	font-size: 14px;
+	font-family: arial, sans, serif;	
+	padding-left: 24px;
+}
+
+.left_menu_title
+{
+	color: #9428a3;
+}
+
+.left_menu_title:hover, .selected_item
+{
+	color: white;
+	background-image: url(../images/selected_item.png);
+}
+
+.content
+{
+	
+}
+
+.title
+{
+	font-size: 20px;
+	font-family: arial, sans, serif;
+	color: #9428a3;
+}
+
+.content_line
+{
+	width: 738px;
+	height: 11px;
+	background-image: url(../images/content_line.png);	
+}
+
+.bottom_line
+{
+	float: left;
+	width: 950px;
+	height: 11px;
+	background-image: url(../images/bottom_line.png);
+}
+
+.footer_text{
+	margin: 0 auto;
+	width: 950px;
+	font-size: 12px;
+	font-family: arial, sans, serif;
+	color: #9428a3;	
+}

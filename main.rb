@@ -2,6 +2,7 @@
   require 'sinatra'
   require 'sinatra/content_for'
   require 'haml'
+  require 'sass'
   require 'uri'
 
 #  enable :sessions
@@ -20,6 +21,11 @@ class Main < Sinatra::Base
   def with_layout(template, options={}) 
     #erb(template, options.merge(:layout => :'/header'))
     haml template, :locals => {:active => template}
+  end
+
+  get '/css/screen.css' do
+   content_type :css
+   sass :stylesheet # overridden
   end
 
   get '/' do
