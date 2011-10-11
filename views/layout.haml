@@ -7,58 +7,33 @@
 	%title Сайт психолога Анны Гордиенко
 	%link{:href => "/css/screen.css", :rel => "stylesheet", :type => "text/css", :media => "screen"}/
 %body
-.head
-	.head_contacts_text
-		.mail
-			Email:
-		.icq
-			ICQ:
-		.skype
-			Skype:
-
-	.left_menu
-		%table
-			%tr
-				%td
-					%a{:href => "/"}
-						#home.left_menu_title{:class => (active == :index)?"selected_item":""}
-							Главная
-			%tr
-				%td
-					%a{:href => "/consultations"}
-						#consultations.left_menu_title{:class => (active == :consultations)?"selected_item":""}
-							Консультации
-			%tr
-				%td
-					%a{:href => "/news"}
-						#news.left_menu_title{:class => (active == :news)?"selected_item":""}
-							Новости
-			%tr
-				%td
-					%a{:href => "/guest"}
-						#guest.left_menu_title{:class => (active == :guest)?"selected_item":""}
-							Гостевая
-			%tr
-				%td
-					%a{:href => "/information"}
-						#information.left_menu_title{:class => (active == :information)?"selected_item":""}
-							Информационный
-			%tr
-				%td
-					%a{:href => "/contacts"}
-						#contacts.left_menu_title{:class => (active == :contacts)?"selected_item":""}
-							Связаться со мной
-	.content
-		%table
-			%tr
-				%td.title
-					=yield_content :title
-			%tr
-				%td.content_line
-			%tr
-				%td
-					=yield
-		%div
-			.bottom_line
-			.footer_text
-				%a{:href => "/"} Сайт психолога Анны Гордиенко
+#wrapper
+	#main
+		#content
+			%h1=yield_content :title
+			=yield
+		%ul#aside
+			%li{:class => (active == :index) ? "active" : ""}
+				%a{:href => "/"} Главная
+			%li{:class => (active == :consultations) ? "active" : ""}
+				%a{:href => "/consultations"} Консультации
+			%li{:class => (active == :news) ? "active" : ""}
+				%a{:href => "/news"} Новости
+			%li{:class => (active == :guest) ? "active" : ""}
+				%a{:href => "/guest"} Гостевая
+			%li{:class => (active == :information) ? "active" : ""}
+				%a{:href => "/information"} Информационный
+			%li{:class => (active == :contacts) ? "active" : ""}
+				%a{:href => "/contacts"} Связаться со мной
+	#header
+		%strong.logo
+			%a{:href => "/"} Сайт психолога Анны Гордиенко
+		%dl.contacts
+			%dt Email:
+			%dd &nbsp;
+			%dt ICQ:
+			%dd &nbsp;
+			%dt Skype:
+			%dd &nbsp;
+	#footer
+		%a{:href => "/"} Сайт психолога Анны Гордиенко
