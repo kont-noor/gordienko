@@ -5,7 +5,7 @@
   require 'sass'
   require 'uri'
 
-#  enable :sessions
+  #enable :sessions
 
 class Main < Sinatra::Base
 
@@ -20,7 +20,7 @@ class Main < Sinatra::Base
 
   def with_layout(template, options={}) 
     #erb(template, options.merge(:layout => :'/header'))
-    haml template, :locals => {:active => template}
+    haml template, :locals => {:active => template}.merge(options)
   end
 
   get '/css/screen.css' do
@@ -49,9 +49,38 @@ class Main < Sinatra::Base
   end
 
   get '/contacts' do
-    with_layout :contacts
+    with_layout :contacts, {:answer => nil}.merge(captcha_tags)
   end
 
-  helpers Sinatra::ContentFor   
+  post '/contacts/sending' do
+#=begin
+    if captcha_pass?
+      answer = 'Капча правильная!'
+    else
+      answer = 'Неверно введена капча'
+    end
+#=end
+    #captcha_true = captcha_pass?
+    #answer = params.merge({:captcha_true => captcha_true})
+    with_layout :contacts, {:answer => answer}.merge(captcha_tags)
+  end
 
+  helpers Sinatra::ContentFor
+
+  def captcha_pass?
+    session = params[:captcha_session].to_i
+    answer = params[:captcha_answer].gsub(/\W/, '')
+    open("http://captchator.com/captcha/check_answer/#{session}/#{answer}").read.to_i.nonzero? rescue false
+  end
+
+  def captcha_session
+    @captcha_session ||= rand(9000) + 1000
+  end
+
+  def captcha_tags
+    {
+      :session => captcha_session,
+      :image => "http://captchator.com/captcha/image/#{captcha_session}"
+    }
+  end
 end
