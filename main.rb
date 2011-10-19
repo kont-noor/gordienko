@@ -1,3 +1,4 @@
+# encoding: UTF-8
   require 'rubygems'
   require 'sinatra'
   require 'sinatra/content_for'
@@ -19,7 +20,6 @@ class Main < Sinatra::Base
   end
 
   def with_layout(template, options={}) 
-    #erb(template, options.merge(:layout => :'/header'))
     haml template, :locals => {:active => template}.merge(options)
   end
 
