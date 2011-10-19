@@ -5,6 +5,7 @@
   require 'haml'
   require 'sass'
   require 'uri'
+  require 'rest-open-uri'
 
   #enable :sessions
 
@@ -13,7 +14,7 @@ class Main < Sinatra::Base
   set :app_file, __FILE__
   set :root, Proc.new { app_file && File.expand_path(File.dirname(app_file)) }
   set :public, Proc.new { root && File.join(root, 'public') }
-  set :static, Proc.new { public && File.exist?(public) }
+  set :static, Proc.new { 'public' && File.exist?('public') }
 	
   before do
     content_type :html, 'charset' => 'utf-8'
@@ -24,13 +25,13 @@ class Main < Sinatra::Base
   end
 
   def captcha_pass?
-    session = params[:captcha_session].to_i
-    answer = params[:captcha_answer].gsub(/\W/, '')
+    session = params[:captcha_session]
+    answer = params[:captcha_answer]
     open("http://captchator.com/captcha/check_answer/#{session}/#{answer}").read.to_i.nonzero? rescue false
   end
 
   def captcha_session
-    @captcha_session ||= rand(9000) + 1000
+    @captcha_session ||= rand(9000000) + 1000000
   end
 
   def captcha_tags
