@@ -70,15 +70,11 @@ class Main < Sinatra::Base
   end
 
   post '/contacts/sending' do
-#=begin
     if captcha_pass?
       answer = 'Капча правильная!'
     else
       answer = 'Неверно введена капча'
     end
-#=end
-    #captcha_true = captcha_pass?
-    #answer = params.merge({:captcha_true => captcha_true})
     with_layout :contacts, {:answer => answer}.merge(captcha_tags)
   end
 
