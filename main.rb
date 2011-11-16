@@ -4,8 +4,8 @@
   require 'sinatra/content_for'
   require 'haml'
   require 'sass'
-  require 'uri'
-  require 'rest-open-uri'
+  #require 'uri'
+  require 'open-uri'
 
   #enable :sessions
 
@@ -13,7 +13,7 @@ class Main < Sinatra::Base
 
   set :app_file, __FILE__
   set :root, Proc.new { app_file && File.expand_path(File.dirname(app_file)) }
-  set :public, Proc.new { root && File.join(root, 'public') }
+  #set :public, Proc.new { root && File.join(root, 'public') }
   set :static, Proc.new { 'public' && File.exist?('public') }
 	
   before do
@@ -72,7 +72,8 @@ class Main < Sinatra::Base
 
   post '/contacts/sending' do
     if captcha_pass?
-      answer = 'Капча правильная!'
+      #answer = 'Капча правильная!'
+      answer = params
     else
       answer = 'Неверно введена капча'
     end
