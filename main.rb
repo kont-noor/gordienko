@@ -2,12 +2,20 @@
   require 'rubygems'
   require 'sinatra'
   require 'sinatra/content_for'
+  require 'active_record'
   require 'haml'
   require 'sass'
   #require 'uri'
   require 'open-uri'
 
   #enable :sessions
+
+class Feedback < ActiveRecord::Base
+end
+
+DBconfig = YAML::load( File.open('db/config.yml') )['development']
+ActiveRecord::Base.establish_connection DBconfig
+
 
 class Main < Sinatra::Base
 
@@ -20,7 +28,7 @@ class Main < Sinatra::Base
     content_type :html, 'charset' => 'utf-8'
   end
 
-  def with_layout(template, options={}) 
+  def with_layout(template, options={:encoding => 'UTF-8'}) 
     haml template, :locals => {:active => template}.merge(options)
   end
 
@@ -70,12 +78,18 @@ class Main < Sinatra::Base
     with_layout :contacts, {:answer => nil}.merge(captcha_tags)
   end
 
-  post '/contacts/sending' do
+  post '/contacts/send' do
     if captcha_pass?
-      #answer = 'Капча правильная!'
+      $answer = 'Капча правильная!'
       answer = params
+      @feedback = Feedback.new(params[:feedback])
+      if @feedback.save
+        answer = answer.merge({:save_result => 'ok'})
+      else
+        answer = answer.merge({:save_result => 'fail'})
+      end
     else
-      answer = 'Неверно введена капча'
+      answer = 'wrong captcha'
     end
     with_layout :contacts, {:answer => answer}.merge(captcha_tags)
   end

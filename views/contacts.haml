@@ -3,21 +3,21 @@
 -unless answer.nil?
 	.answer
 		=answer
-%form{:action => "/contacts", :method => "POST"}
+%form{:action => "/contacts/send", :method => "POST"}
 	%fieldset.contact-form
 		.row
 			%label Ваш e-mail:
-			%input{:type => "text", :name => "from", :size => "43"}
+			%input{:type => "text", :name => "feedback[email]", :size => "43"}
 		.row
 			%label Тема:
-			%input{:type => "text", :name => "subject", :size => "43"}
+			%input{:type => "text", :name => "feedback[topic]", :size => "43"}
 		.row
 			%label Сообщение:
-			%textarea{:rows => "10", :cols => "50", :name => "message"}
+			%textarea{:rows => "10", :cols => "50", :name => "feedback[message]"}
 		.row
 			%label Капча:
 			%input{:type => "hidden", :name => "captcha_session", :value => session}
 			%img{:alt => "captcha", :src => image}
 			%input{:type => "text", :name => "captcha_answer", :size => "43"}
 		.row
-			%input{:type => "submit", :value => "Отправить"}
+			%input{:type => "submit", :value => "send"}
